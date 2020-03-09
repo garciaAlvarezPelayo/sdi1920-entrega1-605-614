@@ -40,5 +40,10 @@ public class UsersController {
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		return "/home";
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logout() {
+		return "/home";
+	}
 }
 
