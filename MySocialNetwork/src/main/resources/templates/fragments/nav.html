@@ -7,37 +7,8 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
-				<li><a href="/" th:text="#{home.message}">Home</a></li>
-				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{gestionNotas}">
-						Gestion de Notas <span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
-							href="/mark/add" th:text="#{agregarNota}">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
-					</ul></li>
-				<li id="users-menu" class="dropdown"
-					sec:authorize="hasRole('ROLE_ADMIN')"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					th:text="#{gestionUsuarios}"> Gestion de Usuarios <span
-						class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="/user/add" th:text="#{agregarUsuario}">Agregar
-								usuario</a></li>
-						<li><a href="/user/list" th:text="#{verUsuarios}">Ver
-								usuarios</a></li>
-					</ul></li>
-				<li class="active"><a href="/teacher/list"
-					th:text="#{verProfesores}">Ver Profesores</a></li>
-				<li id="professors-menu"><a href="/teacher/add" th:text="#{agregarProfesor}" sec:authorize="hasRole('ROLE_ADMIN')">Agregar
-						Profesor</a></li>
-			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -48,29 +19,25 @@
 						<li><a id="btnEnglish" value="EN"> <img
 								th:src="@{/img/if_uk_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
-								th:text="#{language.en}">InglÈs</span>
+								th:text="#{language.en}">Ingl√©s</span>
 						</a></li>
 						<li><a id="btnSpanish" value="ES"> <img
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
-								th:text="#{language.es}">EspaÒol</span>
-						</a></li>
-						<li><a id="btnFrench" value="FR"> <img
-								th:src="@{/img/if_spain_flag.png}"
-								style="border: 0; float: left; margin-right: 15px" /> <span
-								th:text="#{language.fr}">Francia</span>
+								th:text="#{language.es}">Espa√±ol</span>
 						</a></li>
 					</ul></li>
 
 				<li sec:authorize="!isAuthenticated()"><a href="/signup"
 					th:text="#{signup.message}"> <span
-						class="glyphicon glyphicon-user"></span> Registrate
+						class="glyphicon glyphicon-user"></span> Reg√≠strate
 				</a></li>
 				<li sec:authorize="!isAuthenticated()"><a href="/login"
 					th:text="#{login.message}"> <span
-						class="glyphicon glyphicon-log-in"></span> Identificate
+						class="glyphicon glyphicon-log-in"></span> Entrar
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+				<li sec:authorize="isAuthenticated()"><a href="/logout"
+					th:text="#{logout.message}"> <span
 						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 

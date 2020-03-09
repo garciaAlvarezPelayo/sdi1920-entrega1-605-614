@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head th:replace="fragments/head" />
 <body>
-	<h2 th:text="#{homeTitle}"></h2>
+	<nav th:replace="fragments/nav"></nav>
+	<h2 th:text="#{home.title}"></h2>
+	<footer th:replace="fragments/footer"></footer>
 </body>
 </html>

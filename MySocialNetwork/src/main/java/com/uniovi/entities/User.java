@@ -13,6 +13,7 @@ public class User {
 	private String name;
 	private String surname;
 	private String password;
+	@Transient
 	private String passwordConfirm;
 	private String role;
 	@OneToMany(cascade = CascadeType.ALL)
