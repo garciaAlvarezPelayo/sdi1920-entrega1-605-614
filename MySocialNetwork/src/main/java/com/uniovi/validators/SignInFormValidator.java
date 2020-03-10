@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.*;
 
 @Component
-public class SignUpFormValidator implements Validator {
+public class SignInFormValidator implements Validator {
 	
 	@Autowired
 	private UsersService usersService;
@@ -22,14 +22,11 @@ public class SignUpFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		User user = (User) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Error.empty");
-		if (usersService.getUserByEmail(user.getEmail()) != null) {
-			errors.rejectValue("email", "Error.signup.email.duplicate");
+		if (usersService.getUserByEmail(user.getEmail()) == null) {
+			errors.rejectValue("email", "Error.wrong.signin.email");
 		}
-		if (user.getPassword().length() < 5 || user.getPassword().length() > 24) {
-			errors.rejectValue("password", "Error.signup.password.length");
-		}
-		if (!user.getPasswordConfirm().equals(user.getPassword())) {
-			errors.rejectValue("passwordConfirm", "Error.signup.passwordConfirm.coincidence");
+		if (usersService.getUserByEmail(user.getEmail()).getPassword() != user.getPassword()) {
+			errors.rejectValue("password", "Error.wrong.signin.password");
 		}
 	}
 }
