@@ -38,11 +38,11 @@ public class UsersController {
 		user.setRole(rolesService.getRoles()[0]);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "/home";
+		return "redirect:home";
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout() {
+	@RequestMapping("/home")
+	public String home(Model model) {
 		return "/home";
 	}
 }
