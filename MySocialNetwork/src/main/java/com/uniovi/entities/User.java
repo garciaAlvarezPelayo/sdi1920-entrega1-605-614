@@ -17,7 +17,9 @@ public class User {
 	private String passwordConfirm;
 	private String role;
 	@OneToMany(cascade = CascadeType.ALL)
-	private Set<User> users;
+	private Set<User> friends;
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	private Set<Publication> publications;
 
 	public User(String email, String name, String surname) {
 		super();
@@ -90,11 +92,11 @@ public class User {
 	}
 
 	public Set<User> getFriends() {
-		return users;
+		return friends;
 	}
 
 	public void setFriends(Set<User> friends) {
-		this.users = friends;
+		this.friends = friends;
 	}
 
 }
