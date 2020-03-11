@@ -1,6 +1,11 @@
 package com.uniovi.controllers;
 
+import java.util.LinkedList;
+
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,7 +31,21 @@ public class UsersController {
 	@Autowired
 	private SignUpFormValidator signInFormValidator;
 	@Autowired
-	private RolesService rolesService;	
+	private RolesService rolesService;
+	
+	@RequestMapping("/user/list")
+	public String getListado(Model model, Pageable pageable, @RequestParam(value = "", required = false) String searchText) {
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
+		if (searchText != null && !searchText.isEmpty()) {
+			users = usersService.searchUserByEmailNameAndSurnameFor(pageable, searchText);
+		} else {
+			users = usersService.getUsersFor(pageable);
+		}
+		model.addAttribute("usersList", users.getContent());
+		model.addAttribute("page", users);
+		return "user/list";
+	}
+
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
@@ -53,10 +72,6 @@ public class UsersController {
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = auth.getName();
-		User activeUser = usersService.getUserByEmail(email);
-		model.addAttribute("usersList", activeUser.getFriends());
 		return "/home";
 	}
 }
