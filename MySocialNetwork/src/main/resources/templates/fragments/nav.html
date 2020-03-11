@@ -12,6 +12,9 @@
 			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/" th:text="#{home.message}">Home</a></li>
 			</ul>
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+				<li><a href="/users/list" th:text="#{usersList.message}">listaUsuarios</a></li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ import com.uniovi.repositories.UsersRepository;
 public class UsersService {
 	@Autowired
 	private UsersRepository usersRepository;
+	
+	@Autowired
+	private SecurityService securityService;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -47,10 +52,20 @@ public class UsersService {
 		usersRepository.deleteById(id);
 	}
 
-	public Page<User> searchUserBySurnameAndName(Pageable pageable, String searchText) {
+	public Page<User> getUsersFor(Pageable pageable) {
+		Page<User> users;
+		users = usersRepository.searchUsersFor(securityService.getCurrentUserEmail(), pageable);
+		return users;
+	}
+
+	public User getCurrentUser() {
+		return getUserByEmail(securityService.getCurrentUserEmail());
+	}
+
+	public Page<User> searchUserByEmailNameAndSurnameFor(Pageable pageable, String searchText) {
 		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		searchText = "%" + searchText + "%";
-		users = usersRepository.searchBySurnameAndName(pageable, searchText);
+		users = usersRepository.searchByEmailNameAndSurnameFor(securityService.getCurrentUserEmail(), searchText, pageable);
 		return users;
 	}
 }
