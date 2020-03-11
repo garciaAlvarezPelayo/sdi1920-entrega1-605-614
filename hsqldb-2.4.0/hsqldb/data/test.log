@@ -1,4 +1,4 @@
-/*C219*/SET SCHEMA PUBLIC
+/*C220*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -9,11 +9,9 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$d7dsfMbYamAQ6h2B.G4XE.KUeew5k6GblfR0ivS9fXfHj9yX4udCG','ROLE_PUBLIC','a')
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$yySNRJrykoviT/DmWEVi3.Se7FVi37K1yZy3PklY9nvIwl2lpD7O6','ROLE_ADMIN','D\u00edaz')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
-DISCONNECT
-/*C220*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C221*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -25,13 +23,15 @@ DISCONNECT
 DISCONNECT
 /*C225*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C226*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C227*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C226*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C228*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C229*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C230*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -42,18 +42,9 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$SSjRoqxfdp3n6NQxgp/iQOUECKtRB3EsEgyDc5Hoz5d4T/P1aA5n6','ROLE_PUBLIC','a')
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$YzmLSBTkD/36.SWbDO5XiO79ZL9VJBRvGV3kS3pgUsPICUlP.219i','ROLE_ADMIN','D\u00edaz')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-INSERT INTO USER VALUES(3,'b','a','$2a$10$uzN/B7hq4pzqrXDR0jSjo.opRlcVRR.8kCJprni16FxUegcq1mALK','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-INSERT INTO USER VALUES(4,'c','c','$2a$10$CmUk6l7lrqalLEPdJvR6aeTsG3JBkm19QRukDF.ENSFRoDVXpREEW','ROLE_PUBLIC','c')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-DISCONNECT
-/*C230*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C231*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -72,6 +63,8 @@ DISCONNECT
 /*C238*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C239*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C240*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -82,8 +75,12 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C240*/SET SCHEMA PUBLIC
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$8FBca./ie3Z2srzrOYzFzummN3BYpKloflZbVRmw9RHyJNrl5.kAm','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'a','a','$2a$10$nHRjur45Vsb94KUB4qp2MeiYkV/biaapkyAo1xOeOZaqepJjLA.86','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
 DISCONNECT
 /*C241*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -102,6 +99,8 @@ DISCONNECT
 /*C248*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C249*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C250*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -112,8 +111,12 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C250*/SET SCHEMA PUBLIC
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$UhKZFvX14f.vSjm0emlIquYhlUyip9PPC83CgqncFE1z7NMlW/5yW','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'a','a','$2a$10$IlHkx/YPGfq21l78E1l6k.0HC6HsXB/yqT5KPUNsIKps3gnHgJ2YS','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
 DISCONNECT
 /*C251*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -132,6 +135,8 @@ DISCONNECT
 /*C258*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C259*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C260*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -142,65 +147,78 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$0/WRXnIWolcPbZ/8oUnfRuu1kUgBpivIiDnwK4mFlFiRIyV93aiJ6','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C260*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C261*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C262*/SET SCHEMA PUBLIC
+drop table if exists user CASCADE 
+drop table if exists user_users CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
+alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
+alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
+/*C260*/INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$b27m63gSnO6MXWzLvX3VIuzecrOYp5wASVLmC/wC9fGCw70h3j4we','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+/*C261*/ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
 DISCONNECT
 /*C263*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C264*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C265*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C266*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C267*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C268*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C269*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$CQ4MqmgkqsEobnD2GrmKme/J3bKWND6V6zKrn/Ih2tGF5yd9ep./e','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO USER VALUES(2,'b','a','$2a$10$iVzXZAZJziqT.brrflHpx.ne0.UF9PxT/hLqGUVlUhCf1b97rpnfa','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-DISCONNECT
-/*C270*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C271*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C272*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C273*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C274*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C275*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C276*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C277*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C279*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C260*/INSERT INTO USER VALUES(3,'a','a','$2a$10$6gfZDXpMpY8TrKueY0dYa.Xl34d0gGWgVXUxCgDgtPZYw2xXGXDE6','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'b','b','$2a$10$VQNB3uhfhgdl3wF4Zl0Hhee.kyvUg6CTMQXfK2VqHr89FoD2uxNPO','ROLE_USER','b')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'c','c','$2a$10$qIqg5QzWDN5QMQJM/qDCfe6Qvk/OfP229jfmLXcISF8o4vhsdTQEG','ROLE_USER','c')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'d','d','$2a$10$uDZQOvRAp1cyjCVSn3vgvO9eMci0sMTu7syujvDqdGDeP1UMatx6q','ROLE_USER','d')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'e','a','$2a$10$0ARPJGEMRBiq50YYRe8/OeSlnnXAnFKdKa/Nzs1/KtoTiEdcGtAKy','ROLE_USER','e')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'f','f','$2a$10$IJZLjxZjq8p8QEFfEuLtouuYdz7JOPl9PdfqFPmxyI1S1Bb3y/d3y','ROLE_USER','f')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+DISCONNECT
+/*C262*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C264*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C266*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C268*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C270*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C272*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C274*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C276*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C278*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C279*/SET SCHEMA PUBLIC
+/*C280*/SET SCHEMA PUBLIC
 drop table if exists user CASCADE 
 drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
@@ -211,11 +229,15 @@ alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
 alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
 alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
 alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$kvaxCQdMR3eEVCFi4/yKl.io2MbUSy1IS9CkK1xALYF2/ugLPD6dS','ROLE_PUBLIC','a')
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$BIzxPEBXZMkHdn9GnEW.GuVbwC6s.ZLdJFkXuYZLqeN6cyWKSQdx6','ROLE_ADMIN','D\u00edaz')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
-DISCONNECT
-/*C280*/SET SCHEMA PUBLIC
+INSERT INTO USER VALUES(2,'a','a','$2a$10$SzI6ENBZq99EYSOeyvGXa.SejGFme2wUexYbnne/F7OhErCk51Yim','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'aa','aa','$2a$10$v18QxaRd7zw25uUsYBhsPu3qLsKnishWvDY92.vM1Ye8Bgg2l1icm','ROLE_USER','aa')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
 DISCONNECT
 /*C281*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -234,25 +256,28 @@ DISCONNECT
 /*C288*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C289*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$jZPKb1y8yiB0jUInHgM61.r3cOhtjB/UogRnB9aCNzQZ9p3gROmy.','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
 DISCONNECT
 /*C290*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C291*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C292*/SET SCHEMA PUBLIC
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop table if exists user_friends CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), user_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
+alter table publication add constraint FKq2ei3a07e3ln96uel4alss2u7 foreign key (user_id) references user
+alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
+alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$S7USaB6glulH0IALV7oPWe7a1IAk40vlBBnaQKfXcxBRt8DvdT5Za','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
 DISCONNECT
 /*C293*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -267,25 +292,31 @@ DISCONNECT
 /*C298*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C299*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$DfF/ek4AF6FDbYGdXG8gYeCnakh2pgJTD9HCvdy4NfxJR8AwYAqIG','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
 DISCONNECT
 /*C300*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C301*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C302*/SET SCHEMA PUBLIC
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop table if exists user_friends CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
+alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$125A9bs999NKZWUc85DEE.va2..MlkwQ37wvzZUEodEw4GHBcMjY.','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO PUBLICATION VALUES(2,NULL,'a','a',NULL)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
 DISCONNECT
 /*C303*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -300,25 +331,49 @@ DISCONNECT
 /*C308*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C309*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$03OwZHbJnfm2.JS36Dh08uJL.YTNBOb3sCpfJJPQlc91ByRzEa7Pe','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
 DISCONNECT
 /*C310*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C311*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C312*/SET SCHEMA PUBLIC
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop table if exists user_friends CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
+alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$t2gcKG3r/wj4weiNJwTJf.Cj/d00rDK6cbC8VHWmjIs1Oi4xt7epa','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO PUBLICATION VALUES(2,NULL,'a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO PUBLICATION VALUES(3,NULL,'b','b',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO PUBLICATION VALUES(4,NULL,'c','c',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO PUBLICATION VALUES(5,NULL,'a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO PUBLICATION VALUES(6,NULL,'a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO PUBLICATION VALUES(7,NULL,'a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'a','a','$2a$10$pV7RpisbnXmmKXTGNN1fvODTo5yU/cUxzjnFq8hSc1E8j7DNOKJUm','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
 DISCONNECT
 /*C313*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -333,58 +388,85 @@ DISCONNECT
 /*C318*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C319*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$Ao5fwi0NGGt5bQpw6xw4XukHQAK9TKeHl2zXBNGalFTyCgfLVFwce','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
 DISCONNECT
 /*C320*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C321*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C322*/SET SCHEMA PUBLIC
-DISCONNECT
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop table if exists user_friends CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
+alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$TdyqcXjRTVAJ0NSSghVn6.X9vWxkATqp2ASF4c4jOMrgs6MhFSCza','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO PUBLICATION VALUES(2,'2020-03-11 16:20:21.296000','a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
 /*C323*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C330*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C324*/SET SCHEMA PUBLIC
 DISCONNECT
+/*C322*/DISCONNECT
 /*C325*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C326*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C327*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C328*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C329*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C330*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C331*/SET SCHEMA PUBLIC
 DISCONNECT
+/*C329*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C328*/SET SCHEMA PUBLIC
+DISCONNECT
 /*C332*/SET SCHEMA PUBLIC
-DISCONNECT
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop table if exists user_friends CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
+alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$hS9cG7GK/xvH.HTSEJd7GutysNULTMDiVQoqNFzsl/Ms6OKKZ/E7O','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO PUBLICATION VALUES(2,'2020-03-11 16:21:21.058000','a','a',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO PUBLICATION VALUES(3,'2020-03-11 16:21:32.224000','b','b',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
 /*C333*/SET SCHEMA PUBLIC
+INSERT INTO PUBLICATION VALUES(4,'2020-03-11 16:21:32.240000','b','b',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+/*C332*/INSERT INTO PUBLICATION VALUES(5,'2020-03-11 16:21:41.385000','c','c',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO PUBLICATION VALUES(6,'2020-03-11 16:21:50.796000','d','d',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
 DISCONNECT
+/*C333*/DISCONNECT
 /*C334*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C335*/SET SCHEMA PUBLIC
@@ -396,319 +478,8 @@ DISCONNECT
 /*C338*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C339*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
 DISCONNECT
 /*C340*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C341*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C342*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C343*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C344*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C345*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C346*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C347*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C348*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C349*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C350*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C351*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C352*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C353*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C354*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C355*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C356*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C357*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C358*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C359*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C360*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C361*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C362*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C363*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C364*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C365*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C366*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C367*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$mYDR7IhGhU8gkKBj71IH8eLlkWelww8pezXGrPMRWPaxQJgvwesYu','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO USER VALUES(2,'b','b','$2a$10$MRkRrE9.l0eXRqmEoc7Y9e/ECJlh9b7/sd7w3RdSkqyLBr7NRB.NK','ROLE_PUBLIC','b')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-DISCONNECT
-/*C368*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C369*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C370*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C371*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C372*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C373*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C374*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C375*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C376*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C377*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$.iHfIjxgiZ3.20cl46HMg.UrLcUgktFS5nMxyRAG3QLhpJjXTEmwe','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C378*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C379*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C380*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C381*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C382*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C383*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C384*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C385*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C386*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C387*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$0qDhChiCyM7WkKzfM27LlOHKgRTxvHVPLD2GrqlXFx5z30jXK5xjG','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C388*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C389*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C390*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C391*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C392*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C393*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C394*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C395*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C396*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C397*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$KhWDfPoPKCCyJttBTLT4VemterMOZhy4OdYK.sS6mNYvGcRS2R/v.','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C398*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C399*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C400*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C401*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C402*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C403*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C404*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C405*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C406*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C407*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$sfakYtu29nIh8X4oq9n2cuyfCmTUbamwVqbrsSXG44szaPMvAKTH.','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C408*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C409*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C410*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C411*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C412*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C413*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C414*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C415*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C416*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C417*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-DISCONNECT
-/*C418*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C419*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C420*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C421*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C422*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C423*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C424*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C425*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C426*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C427*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'a','a','$2a$10$793TGN81N3STzVABCAeu3.xSKeAQHxXV9SmEFIyTU5mcCeCM5pjNO','ROLE_PUBLIC','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C428*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C429*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C430*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C431*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C432*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C433*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C434*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C435*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C436*/SET SCHEMA PUBLIC
 DISCONNECT
