@@ -50,7 +50,7 @@
 					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> Entrar
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/logout"
+				<li sec:authorize="isAuthenticated()"><a id="logout" href="/logout"
 					method="post" th:text="#{logout.message}"> <span
 						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
