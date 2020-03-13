@@ -16,10 +16,15 @@ public class User {
 	@Transient
 	private String passwordConfirm;
 	private String role;
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<User> friends;
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private Set<Publication> publications;
+	
+	
+	@OneToMany(mappedBy = "sendUser", cascade = CascadeType.ALL)
+	private Set<FriendPetition> petitionsSent;
+	
+	@OneToMany(mappedBy = "arriveUser", cascade = CascadeType.ALL)
+	private Set<FriendPetition> petitionsArrived;
 
 	public User(String email, String name, String surname) {
 		super();
@@ -91,12 +96,20 @@ public class User {
 		this.surname = surname;
 	}
 
-	public Set<User> getFriends() {
-		return friends;
+	public Set<FriendPetition> getPetitionsSent() {
+		return petitionsSent;
 	}
 
-	public void setFriends(Set<User> friends) {
-		this.friends = friends;
+	public void setPetitionsSent(Set<FriendPetition> petitionsSent) {
+		this.petitionsSent = petitionsSent;
 	}
 
+	public Set<FriendPetition> getPetitionsArrived() {
+		return petitionsArrived;
+	}
+
+	public void setPetitionsArrived(Set<FriendPetition> petitionsArrived) {
+		this.petitionsArrived = petitionsArrived;
+	}
+	
 }
