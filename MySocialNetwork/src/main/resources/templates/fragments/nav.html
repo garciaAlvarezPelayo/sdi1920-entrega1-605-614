@@ -18,12 +18,22 @@
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/publication/add" th:text="#{createPublication.message}">Agregar
-								Nota</a></li>
-						<li><a href="/publication/list" th:text="#{myPublications.message}">Ver Notas</a></li>
+						<li><a href="/publication/add"
+							th:text="#{createPublication.message}">Agregar Nota</a></li>
+						<li><a href="/publication/list"
+							th:text="#{myPublications.message}">Ver Notas</a></li>
 					</ul></li>
-				<li><a href="/users/petition/list" th:text="#{petitionslist.message}">Lista de Peticiones</a></li>
-				<li><a href="/users/friend/list" th:text="#{friendslist.message}">Lista de Amigos</a></li>
+				<li id="FriendsMenu" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{friends.message}"> friends management <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/users/petition/list"
+							th:text="#{petitionslist.message}">Lista de Peticiones</a></li>
+						<li><a href="/users/friend/list"
+							th:text="#{friendslist.message}">Lista de Amigos</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"
@@ -52,8 +62,8 @@
 					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> Entrar
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a id="logout" href="/logout"
-					method="post" th:text="#{logout.message}"> <span
+				<li sec:authorize="isAuthenticated()"><a id="logout"
+					href="/logout" method="post" th:text="#{logout.message}"> <span
 						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 

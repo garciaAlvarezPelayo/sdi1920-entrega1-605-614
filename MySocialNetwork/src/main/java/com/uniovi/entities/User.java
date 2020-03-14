@@ -1,6 +1,8 @@
 package com.uniovi.entities;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set; //A collection that contains no duplicate elements
 
 @Entity

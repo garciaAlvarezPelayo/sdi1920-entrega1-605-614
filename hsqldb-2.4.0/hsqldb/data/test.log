@@ -1,485 +1,560 @@
-/*C220*/SET SCHEMA PUBLIC
+/*C12*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
 drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
 create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
 alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$yySNRJrykoviT/DmWEVi3.Se7FVi37K1yZy3PklY9nvIwl2lpD7O6','ROLE_ADMIN','D\u00edaz')
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$Lnx00iqLurYGF408v09ynOQGRRHHvtT8lFyfF8VfGx7iwivIRr73u','ROLE_ADMIN','D\u00edaz')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
-DISCONNECT
-/*C221*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C222*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C223*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C224*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C225*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C227*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C226*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C228*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C229*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C230*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$YzmLSBTkD/36.SWbDO5XiO79ZL9VJBRvGV3kS3pgUsPICUlP.219i','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C231*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C232*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C233*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C234*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C235*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C236*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C237*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C238*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C239*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C240*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$8FBca./ie3Z2srzrOYzFzummN3BYpKloflZbVRmw9RHyJNrl5.kAm','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO USER VALUES(2,'a','a','$2a$10$nHRjur45Vsb94KUB4qp2MeiYkV/biaapkyAo1xOeOZaqepJjLA.86','ROLE_USER','a')
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$2F/Ed0C5TRT3oHWPW1FZseH.m3.xxIPUF2bDQIYwIgoloCpjgyBsK','ROLE_USER','Dom\u00ednguez')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
 COMMIT
 DISCONNECT
-/*C241*/SET SCHEMA PUBLIC
+/*C13*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C242*/SET SCHEMA PUBLIC
+/*C14*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C243*/SET SCHEMA PUBLIC
+/*C15*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C244*/SET SCHEMA PUBLIC
+/*C16*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C245*/SET SCHEMA PUBLIC
+/*C17*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C246*/SET SCHEMA PUBLIC
+/*C18*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C247*/SET SCHEMA PUBLIC
+/*C19*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C248*/SET SCHEMA PUBLIC
+/*C20*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C249*/SET SCHEMA PUBLIC
+/*C21*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C250*/SET SCHEMA PUBLIC
+/*C22*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
 drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
 create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
 alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$UhKZFvX14f.vSjm0emlIquYhlUyip9PPC83CgqncFE1z7NMlW/5yW','ROLE_ADMIN','D\u00edaz')
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$Xw.c.aDFmUnrul.QH9xuguo0JjvGb52DdAlj.CceT0VMldlPFxRgi','ROLE_ADMIN','D\u00edaz')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
-INSERT INTO USER VALUES(2,'a','a','$2a$10$IlHkx/YPGfq21l78E1l6k.0HC6HsXB/yqT5KPUNsIKps3gnHgJ2YS','ROLE_USER','a')
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$i7HZEAqwmVjeXNknO7hxj.Zf/PC.yOPIzVX/zYjjOynVeiBv/L6pO','ROLE_USER','Dom\u00ednguez')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
 COMMIT
 DISCONNECT
-/*C251*/SET SCHEMA PUBLIC
+/*C23*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C252*/SET SCHEMA PUBLIC
+/*C24*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C253*/SET SCHEMA PUBLIC
+/*C25*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C254*/SET SCHEMA PUBLIC
+/*C26*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C255*/SET SCHEMA PUBLIC
+/*C27*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C256*/SET SCHEMA PUBLIC
+/*C28*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C257*/SET SCHEMA PUBLIC
+/*C29*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C258*/SET SCHEMA PUBLIC
+/*C30*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C259*/SET SCHEMA PUBLIC
+/*C31*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C260*/SET SCHEMA PUBLIC
+/*C32*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
 drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
 create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
 alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-/*C261*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-/*C260*/INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$b27m63gSnO6MXWzLvX3VIuzecrOYp5wASVLmC/wC9fGCw70h3j4we','ROLE_ADMIN','D\u00edaz')
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$OHTuwQoLew0mHwxa6czUOOeejp55EQAGse5eK2W5uhhiFCggZy9wG','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$w8DscZbCdmr3Uc2YWv8J5.E157S2cjTO7QADKBbdSXRm3a1dFV2ke','ROLE_USER','Dom\u00ednguez')
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
 COMMIT
-/*C261*/ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
 DISCONNECT
-/*C263*/SET SCHEMA PUBLIC
+/*C33*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C265*/SET SCHEMA PUBLIC
+/*C34*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C267*/SET SCHEMA PUBLIC
+/*C35*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C269*/SET SCHEMA PUBLIC
+/*C36*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C271*/SET SCHEMA PUBLIC
+/*C37*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C273*/SET SCHEMA PUBLIC
+/*C38*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C275*/SET SCHEMA PUBLIC
+/*C39*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C277*/SET SCHEMA PUBLIC
+/*C40*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C279*/SET SCHEMA PUBLIC
+/*C41*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C260*/INSERT INTO USER VALUES(3,'a','a','$2a$10$6gfZDXpMpY8TrKueY0dYa.Xl34d0gGWgVXUxCgDgtPZYw2xXGXDE6','ROLE_USER','a')
+/*C42*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$BXpbpbTvZVFu5j3gziz5TuufR/I5Qwt9.ORGeJbDCnBL.oFYtrtK.','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$L9YQ.z5RQWvnfZD8bA7gEuZgq.UkKWdgLcHhKinmlsFKBORZ5fu66','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO PUBLICATION VALUES(3,'2020-03-14 12:53:37.533000','aaa','a',2)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
 COMMIT
-INSERT INTO USER VALUES(4,'b','b','$2a$10$VQNB3uhfhgdl3wF4Zl0Hhee.kyvUg6CTMQXfK2VqHr89FoD2uxNPO','ROLE_USER','b')
+DISCONNECT
+/*C43*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C44*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C45*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C46*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C47*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C48*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C49*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C50*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C51*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C52*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$YLc2jaFW.sQvS5xJUxDhRudCVM74VEy7alWntWgZxW7JlZUL9YbLq','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$DlF4X2c4vPHkuLTcVb2kg.ZfG463.fk3nOhVlwt4ckqMekSobVDAW','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$VL7mfTLbFv3vY4g7pAgQZuYDqGoH3rbb6nZ8WrDZ/GMUSHB3zrlTy','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
 COMMIT
-INSERT INTO USER VALUES(5,'c','c','$2a$10$qIqg5QzWDN5QMQJM/qDCfe6Qvk/OfP229jfmLXcISF8o4vhsdTQEG','ROLE_USER','c')
+DELETE FROM FRIEND_PETITION WHERE ID=4
+INSERT INTO FRIEND_PETITION VALUES(4,TRUE,2,3)
+COMMIT
+INSERT INTO PUBLICATION VALUES(5,'2020-03-14 12:56:41.618000','aaaaaa','a',3)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
 COMMIT
-INSERT INTO USER VALUES(6,'d','d','$2a$10$uDZQOvRAp1cyjCVSn3vgvO9eMci0sMTu7syujvDqdGDeP1UMatx6q','ROLE_USER','d')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
-COMMIT
-INSERT INTO USER VALUES(7,'e','a','$2a$10$0ARPJGEMRBiq50YYRe8/OeSlnnXAnFKdKa/Nzs1/KtoTiEdcGtAKy','ROLE_USER','e')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
-COMMIT
-INSERT INTO USER VALUES(8,'f','f','$2a$10$IJZLjxZjq8p8QEFfEuLtouuYdz7JOPl9PdfqFPmxyI1S1Bb3y/d3y','ROLE_USER','f')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
-COMMIT
-DISCONNECT
-/*C262*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C264*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C266*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C268*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C270*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C272*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C274*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C276*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C278*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C280*/SET SCHEMA PUBLIC
-drop table if exists user CASCADE 
-drop table if exists user_users CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_users (user_id bigint not null, users_id bigint not null, primary key (user_id, users_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_users add constraint UK_gsrhv41c4vbdyw2eahd09ybwh unique (users_id)
-alter table user_users add constraint FKgbuhg6pn50sa41oj7eh8o1i1b foreign key (users_id) references user
-alter table user_users add constraint FK3y361c22ar2f1hdy5ge9xsavf foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$BIzxPEBXZMkHdn9GnEW.GuVbwC6s.ZLdJFkXuYZLqeN6cyWKSQdx6','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO USER VALUES(2,'a','a','$2a$10$SzI6ENBZq99EYSOeyvGXa.SejGFme2wUexYbnne/F7OhErCk51Yim','ROLE_USER','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-INSERT INTO USER VALUES(3,'aa','aa','$2a$10$v18QxaRd7zw25uUsYBhsPu3qLsKnishWvDY92.vM1Ye8Bgg2l1icm','ROLE_USER','aa')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-DISCONNECT
-/*C281*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C282*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C283*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C284*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C285*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C286*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C287*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C288*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C289*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C290*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C291*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C292*/SET SCHEMA PUBLIC
-drop table if exists publication CASCADE 
-drop table if exists user CASCADE 
-drop table if exists user_friends CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), user_id bigint, primary key (id))
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
-alter table publication add constraint FKq2ei3a07e3ln96uel4alss2u7 foreign key (user_id) references user
-alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
-alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$S7USaB6glulH0IALV7oPWe7a1IAk40vlBBnaQKfXcxBRt8DvdT5Za','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-DISCONNECT
-/*C293*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C294*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C295*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C296*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C297*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C298*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C299*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C300*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C301*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C302*/SET SCHEMA PUBLIC
-drop table if exists publication CASCADE 
-drop table if exists user CASCADE 
-drop table if exists user_friends CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
-alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
-alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
-alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$125A9bs999NKZWUc85DEE.va2..MlkwQ37wvzZUEodEw4GHBcMjY.','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO PUBLICATION VALUES(2,NULL,'a','a',NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-DISCONNECT
-/*C303*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C304*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C305*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C306*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C307*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C308*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C309*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C310*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C311*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C312*/SET SCHEMA PUBLIC
-drop table if exists publication CASCADE 
-drop table if exists user CASCADE 
-drop table if exists user_friends CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
-alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
-alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
-alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$t2gcKG3r/wj4weiNJwTJf.Cj/d00rDK6cbC8VHWmjIs1Oi4xt7epa','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO PUBLICATION VALUES(2,NULL,'a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-INSERT INTO PUBLICATION VALUES(3,NULL,'b','b',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-INSERT INTO PUBLICATION VALUES(4,NULL,'c','c',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-INSERT INTO PUBLICATION VALUES(5,NULL,'a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
-COMMIT
-INSERT INTO PUBLICATION VALUES(6,NULL,'a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
-COMMIT
-INSERT INTO PUBLICATION VALUES(7,NULL,'a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
-COMMIT
-INSERT INTO USER VALUES(8,'a','a','$2a$10$pV7RpisbnXmmKXTGNN1fvODTo5yU/cUxzjnFq8hSc1E8j7DNOKJUm','ROLE_USER','a')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
-COMMIT
-DISCONNECT
-/*C313*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C314*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C315*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C316*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C317*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C318*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C319*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C320*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C321*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C322*/SET SCHEMA PUBLIC
-drop table if exists publication CASCADE 
-drop table if exists user CASCADE 
-drop table if exists user_friends CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
-alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
-alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
-alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$TdyqcXjRTVAJ0NSSghVn6.X9vWxkATqp2ASF4c4jOMrgs6MhFSCza','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO PUBLICATION VALUES(2,'2020-03-11 16:20:21.296000','a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-/*C323*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C330*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C324*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C322*/DISCONNECT
-/*C325*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C326*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C327*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C331*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C329*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C328*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C332*/SET SCHEMA PUBLIC
-drop table if exists publication CASCADE 
-drop table if exists user CASCADE 
-drop table if exists user_friends CASCADE 
-drop sequence hibernate_sequence if exists
-create sequence hibernate_sequence start with 1 increment by 1
-create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
-create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
-create table user_friends (user_id bigint not null, friends_id bigint not null, primary key (user_id, friends_id))
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
-alter table user_friends add constraint UK_bbrnh12js1l8culgfpipyat29 unique (friends_id)
-alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
-alter table user_friends add constraint FKe1jhkryq5denjdrjngi7lj9h4 foreign key (friends_id) references user
-alter table user_friends add constraint FK9i7cldnk7cx2g47qex8ovm2ah foreign key (user_id) references user
-INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$hS9cG7GK/xvH.HTSEJd7GutysNULTMDiVQoqNFzsl/Ms6OKKZ/E7O','ROLE_ADMIN','D\u00edaz')
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO PUBLICATION VALUES(2,'2020-03-11 16:21:21.058000','a','a',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-INSERT INTO PUBLICATION VALUES(3,'2020-03-11 16:21:32.224000','b','b',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-/*C333*/SET SCHEMA PUBLIC
-INSERT INTO PUBLICATION VALUES(4,'2020-03-11 16:21:32.240000','b','b',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-/*C332*/INSERT INTO PUBLICATION VALUES(5,'2020-03-11 16:21:41.385000','c','c',1)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
-COMMIT
-INSERT INTO PUBLICATION VALUES(6,'2020-03-11 16:21:50.796000','d','d',1)
+INSERT INTO FRIEND_PETITION VALUES(6,FALSE,3,2)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
 COMMIT
 DISCONNECT
-/*C333*/DISCONNECT
-/*C334*/SET SCHEMA PUBLIC
+/*C53*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C335*/SET SCHEMA PUBLIC
+/*C54*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C336*/SET SCHEMA PUBLIC
+/*C55*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C337*/SET SCHEMA PUBLIC
+/*C56*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C338*/SET SCHEMA PUBLIC
+/*C57*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C339*/SET SCHEMA PUBLIC
+/*C58*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C340*/SET SCHEMA PUBLIC
+/*C59*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C341*/SET SCHEMA PUBLIC
+/*C60*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C61*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C62*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$Zh0ZOt4MpoKETGqUPGSM7OJXlZxAnOBOTNiKQaO/4B3SbTtGmPydG','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$Yl08LKSvxsCZ4vA1v1B3TOgWiavBc45ApHrSlLSxp/YxuWIOMXqX2','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$fE0KOYaHrl2.RldYtaN1M./clcx.K9mcQNaPC51xjxHdNnO4Oqhwu','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+DISCONNECT
+/*C63*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C64*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C65*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C66*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C67*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C68*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C69*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C70*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C71*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C72*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$gOM2aj/g03OUK0wpmzay..fXqZXp/XKvO5xDSPoeLx09StOX.5xEK','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$wRjPyNodJCbtQAx5X0ydEOLuX3FZlixuEqw86Kh.oPQ24Png0KVEO','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$nornDsTIoio7g.q9ZnFcKee6DUbb2eOiMJG1ekRAILaNIGN7Oix3q','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+DISCONNECT
+/*C73*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C74*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C75*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C76*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C77*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C78*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C79*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C80*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C81*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C82*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$J6bGQvpTTHP336aCEu5om.cel4JYKdH1NqyywcSZ.Fd/hYPwIW1BG','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$lH9X6szlUMvjo7kCeReeYOxCymxG2C35kAEnyTUeRdbBRTgOCC6BS','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$GWpY0.7Xb0IyjQwnSan6ZOlqMdKcPLONnl2OtxPTG6XjQ2LHsVd1e','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(5,FALSE,3,2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+DELETE FROM FRIEND_PETITION WHERE ID=4
+INSERT INTO FRIEND_PETITION VALUES(4,TRUE,2,3)
+COMMIT
+DISCONNECT
+/*C83*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C84*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C85*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C86*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C87*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C88*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C89*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C90*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C91*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C92*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$BXXWAHiJCzS1owYz9Wr7suUWF8E8ZXjAxDDbfUl0KvVXbSB7ZRmii','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$xinynCL6FtuU8pjVJ9X9PeS74taRVyfeMCny3/2fTl2LGxxzZqzZW','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$ZtVKNr.A3ged1xu37p3eH.2iMAJ5EQvnBHcucUGia7F4CC0DerWte','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+DELETE FROM FRIEND_PETITION WHERE ID=4
+INSERT INTO FRIEND_PETITION VALUES(4,TRUE,2,3)
+COMMIT
+DISCONNECT
+/*C93*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C94*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C95*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C96*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C97*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C98*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C99*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C100*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C101*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C102*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$0PP72DoBxN7b3EmQDyKS..uJEO4C3ezVNyC91wD49Ij4tzC6TWUzi','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$ADu/o4b3IOAC6W3jW/F0CeI1bayv.2J86ExTvfXtuK4aF4Y7OnF7K','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$/rtuJzpPA6GWhE/F9MLZG.09FLFyPdEyGagwUODtQOacnUwWsWKA2','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+DISCONNECT
+/*C103*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C104*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C105*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C106*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C107*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C108*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C109*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C110*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C111*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C112*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$SB9IdSirOMHL8rv5WLPG7.c.a8X0XP9sXTxEp3/A8HAVSFpZildz6','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$UC6.U46qNGlQtPChIo.n9uH4g6/VYbAswGlIogvQD3Z/qkDlK.Gxy','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$WnCykpe1U6y1bcXGJYXtZ.l9txdKDx5ldJN/tSAw2U3SXmlnxbmGm','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+/*C122*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$X0P3889CM5nZrltoFHvy/OVDZZwF4vE1h/UqAPwFbB6O7s1GMeGHS','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$vreqw1NGbUQiOWbQbYz1BOvtaOd5CSzdIEsE8NveQstET9ejTQ1gW','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+DISCONNECT
+/*C123*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C124*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C125*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C126*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C127*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C128*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C129*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C130*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C131*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C112*/DISCONNECT
+/*C113*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C114*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C115*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C116*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C117*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C118*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C119*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C120*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C121*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C132*/SET SCHEMA PUBLIC
+drop table if exists friend_petition CASCADE 
+drop table if exists publication CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table friend_petition (id bigint not null, has_accepted boolean not null, arrive_user_id bigint, send_user_id bigint, primary key (id))
+create table publication (id bigint not null, publication_date timestamp, text varchar(255), title varchar(255), author_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), name varchar(255), password varchar(255), role varchar(255), surname varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table friend_petition add constraint FKeagcu2amy581aj9sva8b46b2v foreign key (arrive_user_id) references user
+alter table friend_petition add constraint FKkyvbd4lhkwvqaqglsm9do5y08 foreign key (send_user_id) references user
+alter table publication add constraint FK2o4jxy4fxg8cdqrvp8matpo1e foreign key (author_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Pedro','$2a$10$mua1pSB3RAYL4NyTcljUr.h/ZmHDsEKJnlyVpRKWJ0EmLlvEjCxle','ROLE_ADMIN','D\u00edaz')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'user@email.com','Pablo','$2a$10$t3YEOk8OccOQKMJjZmHbzOAv7bS.DB71ABZVe1Cc8Bz3h6nvRwTyu','ROLE_USER','Dom\u00ednguez')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'a','a','$2a$10$zQcsgf7yYk3VVzuCVmrgWuCGYaPzkjNy5c7vegU8QAKipJ8ix.bnm','ROLE_USER','a')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO FRIEND_PETITION VALUES(4,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+DELETE FROM FRIEND_PETITION WHERE ID=4
+INSERT INTO FRIEND_PETITION VALUES(4,TRUE,2,3)
+COMMIT
+DISCONNECT
+/*C133*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C134*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C135*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C136*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C137*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C138*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C139*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C140*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C141*/SET SCHEMA PUBLIC
 DISCONNECT
