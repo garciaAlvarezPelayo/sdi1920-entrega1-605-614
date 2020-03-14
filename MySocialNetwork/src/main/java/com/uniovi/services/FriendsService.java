@@ -24,4 +24,11 @@ public class FriendsService {
 		return new PageImpl<User>(users1);
 	}
 	
+	public List<User> getFriends(Long id) {
+		List<User> users1 =  friendPetitionsRepository.findUserBySendUserHasAccepted(id);
+		List<User> users2 =  friendPetitionsRepository.findUserByArriveUserHasAccepted(id);
+		users1.addAll(users2);
+		return users1;
+	}
+	
 }

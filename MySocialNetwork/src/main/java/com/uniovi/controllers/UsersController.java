@@ -58,6 +58,7 @@ public class UsersController {
 		model.addAttribute("page", users);
 		model.addAttribute("activeUser", activeUser);
 		model.addAttribute("friendPetitions", friendPetitions);
+		model.addAttribute("friendList", friendsService.getFriends(activeUser.getId()));
 		return "users/list";
 	}
 
