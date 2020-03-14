@@ -6,7 +6,7 @@
 			<input name="searchText" type="text" class="form-control" size="50"
 				placeholder="Buscar por descripción o nombre del alumno">
 		</div>
-		<button type="submit" class="btn btn-default"
+		<button id="search" type="submit" class="btn btn-default"
 			th:text="#{search.message}">Buscar</button>
 	</form>
 	<div class="table-responsive">
@@ -29,12 +29,12 @@
 						th:if="${!friendPetitions.contains(user.email) && !friendList.contains(user)}"><form
 							method="post"
 							th:attr="action=${'/users/list/petition/' + user.id}">
-							<button type="submit" class="btn btn-default"
+							<button id="sendInvitation" type="submit" class="btn btn-default"
 								th:text="#{sendpetition.message}"></button>
 						</form></td>
-					<td th:if="${friendList.contains(user)}"
+					<td id="isFriend" th:if="${friendList.contains(user)}"
 						th:text="#{isFriend.message}"></td>
-					<td th:if="${friendPetitions.contains(user.email) && !friendList.contains(user)}"
+					<td id="invitationSent" th:if="${friendPetitions.contains(user.email) && !friendList.contains(user)}"
 						th:text="#{petitionsent.message}"></td>
 				</tr>
 			</tbody>

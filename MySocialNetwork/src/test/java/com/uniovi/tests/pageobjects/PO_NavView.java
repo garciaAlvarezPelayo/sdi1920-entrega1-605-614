@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -52,5 +53,9 @@ public class PO_NavView extends PO_View {
 		// CLickamos la opción Inglés partiendo de la opción Español
 		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", textLanguage, getTimeout());
 		elementos.get(0).click();
+	}
+	
+	public static void clickOptionById(WebDriver driver, String id) {
+		driver.findElement(By.id(id)).click();
 	}
 }
