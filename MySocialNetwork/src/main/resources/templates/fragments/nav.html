@@ -23,12 +23,19 @@
 						<li><a href="/publication/list"
 							th:text="#{myPublications.message}">Ver Notas</a></li>
 					</ul></li>
-				<li><a href="/users/petition/list"
-					th:text="#{petitionslist.message}">Lista de Peticiones</a></li>
-				<li><a href="/users/friend/list"
-					th:text="#{friendslist.message}">Lista de Amigos</a></li>
-				<li sec:authorize="hasRole('ROLE_ADMIN')"><a
-					href="/users/admin/list" th:text="#{allusers.message}">Todos los usuarios</a></li>
+				<li id="FriendsMenu" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{friends.message}"> friends management <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a id="petitionList" href="/users/petition/list"
+							th:text="#{petitionslist.message}">Lista de Peticiones</a></li>
+						<li><a id="friendList" href="/users/friend/list"
+							th:text="#{friendslist.message}">Lista de Amigos</a></li>
+					</ul></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a
+              href="/users/admin/list" th:text="#{allusers.message}">Todos los usuarios</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"

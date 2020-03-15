@@ -22,6 +22,11 @@
 						<td th:text="${friend.email}">Ejercicio 1</td>
 						<td th:text="${friend.name}">Ejercicio 1</td>
 						<td th:text="${friend.surname}">Ejercicio 1</td>
+						<td><form method="post"
+								th:attr="action=${'/users/publication/list/' + friend.id}">
+								<button type="submit" class="btn btn-default"
+									th:text="#{seePublications.message}"></button>
+							</form></td>
 					</tr>
 				</tbody>
 			</table>
