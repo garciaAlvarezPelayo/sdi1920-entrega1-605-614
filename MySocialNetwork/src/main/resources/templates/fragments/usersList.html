@@ -29,10 +29,10 @@
 						th:if="${!friendPetitions.contains(user.email)}"><form
 							method="post"
 							th:attr="action=${'/users/list/petition/' + user.id}">
-							<button type="submit" class="btn btn-default"
+							<button id="sendInvitation" type="submit" class="btn btn-default"
 								th:text="#{sendpetition.message}"></button>
 						</form></td>
-					<td
+					<td id="invitationSent"
 						th:unless="${!friendPetitions.contains(user.email) or friends.contains(user)}"
 						th:text="#{petitionsent.message}"></td>
 					<td th:if="${friends.contains(user)}" th:text="#{friend.message}"></td>

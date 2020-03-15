@@ -1,9 +1,5 @@
 package com.uniovi.tests;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,10 +10,10 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.pageobjects.PO_PetitionsList;
+import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_FriendsList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
@@ -304,7 +300,7 @@ public class MySocialNetworkTests {
 	// 9. Listado de amigos //
 	// ###################################################//
 
-	// PR18. Mostrar el listado de amigos de un usuario. Comprobar que el listado
+	// PR19. Mostrar el listado de amigos de un usuario. Comprobar que el listado
 	// contiene los amigos
 	// que deben ser.
 
@@ -314,5 +310,68 @@ public class MySocialNetworkTests {
 		PO_NavView.clickOptionById(driver, "FriendsMenu");
 		PO_NavView.clickOptionById(driver, "friendList");
 		PO_FriendsList.testFriend(driver, "admin@email.com");
+	}
+
+	// ###################################################//
+	// 10. Internacionalización de todas las vistas //
+	// ###################################################//
+
+	// PR20. Visualizar al menos cuatro páginas en Español/Inglés/Español
+	// (comprobando que algunas
+	// de las etiquetas cambian al idioma correspondiente). Ejemplo, Página
+	// principal/Opciones Principales de
+	// Usuario/Listado de Usuarios.
+
+	@Test
+	public void PR20() {
+		PO_HomeView.checkChangeIdiom(driver, "Spanish", "English", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+		PO_NavView.clickLoginOption(driver);
+		PO_LoginView.checkChangeIdiom(driver, "Spanish", "English", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+		PO_LoginView.login(driver, "user@email.com", "user");
+		PO_UsersList.checkChangeIdiom(driver, "Spanish", "English", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+		PO_NavView.clickOptionById(driver, "FriendsMenu");
+		PO_NavView.clickOptionById(driver, "friendList");
+		PO_FriendsList.checkChangeIdiom(driver, "Spanish", "English", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+	}
+
+	// ###################################################//
+	// 11. Internacionalización de todas las vistas //
+	// ###################################################//
+
+	// PR21. Intentar acceder sin estar autenticado a la opción de listado de
+	// usuarios. Se deberá volver al
+	// formulario de login.
+
+	@Test
+	public void PR21() {
+		driver.navigate().to(URL + "/users/list");
+		PO_LoginView.checkPasswordMessage(driver, PO_Properties.getSPANISH());
+	}
+
+	// PR22. Intentar acceder sin estar autenticado a la opción de listado de
+	// publicaciones de un usuario
+	// estándar. Se deberá volver al formulario de login.
+
+	@Test
+	public void PR22() {
+		driver.navigate().to(URL + "/publication/list");
+		PO_LoginView.checkPasswordMessage(driver, PO_Properties.getSPANISH());
+	}
+
+	// PR23. Estando autenticado como usuario estándar intentar acceder a una opción
+	// disponible solo
+	// para usuarios administradores (Se puede añadir una opción cualquiera en el
+	// menú). Se deberá indicar un
+	// mensaje de acción prohibida.
+
+	@Test
+	public void PR23() {
+		PO_LoginView.login(driver, "user@email.com", "user");
+		driver.navigate().to(URL + "/closeWeb");
+		PO_View.checkElement(driver, "text", "You do not have access permissions, Go out");
 	}
 }
