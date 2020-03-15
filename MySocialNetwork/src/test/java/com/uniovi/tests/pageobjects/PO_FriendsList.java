@@ -11,6 +11,8 @@ public class PO_FriendsList extends PO_NavView{
 		assertTrue(true);
 	}
 	
-	
+	public static void seePublicationsOfFriend(WebDriver driver, String email) {
+		
+	}
 
 }

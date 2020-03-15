@@ -17,11 +17,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.uniovi.tests.pageobjects.PO_PetitionsList;
+import com.uniovi.tests.pageobjects.PO_AllUsers;
 import com.uniovi.tests.pageobjects.PO_FriendsList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.PO_PetitionsList;
+import com.uniovi.tests.pageobjects.PO_Publication;
 import com.uniovi.tests.pageobjects.PO_RegisterUser;
 import com.uniovi.tests.pageobjects.PO_UsersList;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -32,7 +34,10 @@ public class MySocialNetworkTests {
 	// En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioens
 	// automáticas)):
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\xxerp\\OneDrive\\Escritorio\\Proyecto Manhatan\\Grado\\3º\\SDI\\work\\MySocialNetwork\\lib\\geckodriver024win64.exe";
+	// static String Geckdriver024 =
+	// "C:\\Users\\xxerp\\OneDrive\\Escritorio\\Proyecto
+	// Manhatan\\Grado\\3º\\SDI\\work\\MySocialNetwork\\lib\\geckodriver024win64.exe";
+	static String Geckdriver024 = "C:\\\\Users\\\\UO265081\\\\Desktop\\\\UNI_+_EBAU\\\\SDI\\\\PL-SDI-Sesión5-material\\\\PL-SDI-Sesión5-material\\\\geckodriver024win64.exe";
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
@@ -63,6 +68,12 @@ public class MySocialNetworkTests {
 	static public void end() {
 		// Cerramos el navegador al finalizar las pruebas
 		driver.quit();
+	}
+
+	private void addUsers() {
+		PO_RegisterUser.registerUser(driver, "user2@email.com", "Diego", "Ramírez", "user2");
+		PO_RegisterUser.registerUser(driver, "user3@email.com", "Daniela", "Gutierrez", "user3");
+		PO_NavView.clickOption(driver, "logout", "id", "texto-entrar");
 	}
 
 	// ###################################################//
@@ -315,4 +326,213 @@ public class MySocialNetworkTests {
 		PO_NavView.clickOptionById(driver, "friendList");
 		PO_FriendsList.testFriend(driver, "admin@email.com");
 	}
+
+	// ###################################################//
+	// 13. Crear publicación //
+	// ###################################################//
+
+	// PR24. Ir al formulario crear publicaciones, rellenarla con datos válidos y
+	// pulsar el botón Submit.
+	// Comprobar que la publicación sale en el listado de publicaciones de dicho
+	// usuario.
+
+	@Test
+	public void PR24() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub1", "Publicación número 1");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "listPublication");
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr");
+		assertTrue(elements.size() == 1);
+	}
+
+	// PR25. Ir al formulario de crear publicaciones, rellenarla con datos inválidos
+	// (campo título vacío) y
+	// pulsar el botón Submit. Comprobar que se muestra el mensaje de campo
+	// obligatorio.
+
+	@Test
+	public void PR25() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "", "Publicación número 1");
+		PO_View.checkElement(driver, "id", "publicationHeader");
+	}
+
+	// ###################################################//
+	// 14. Listado de mis publicaciones //
+	// ###################################################//
+
+	// PR26. Mostrar el listado de publicaciones de un usuario y comprobar que se
+	// muestran todas las que
+	// existen para dicho usuario.
+
+	@Test
+	public void PR26() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub2", "Publicación número 2");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "listPublication");
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr");
+		assertTrue(elements.size() == 2);
+	}
+
+	// ###################################################//
+	// 15. Listado de publicaciones de un amigo //
+	// ###################################################//
+
+	// PR27. Mostrar el listado de publicaciones de un usuario amigo y comprobar que
+	// se muestran todas
+	// las que existen para dicho usuario.
+
+	@Test
+	public void PR27() {
+		PO_LoginView.login(driver, "user@email.com", "user");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub3", "Publicación número 3");
+		PO_NavView.clickOption(driver, "logout", "id", "texto-entrar");
+		
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "FriendsMenu");
+		PO_NavView.clickOptionById(driver, "friendList");
+		PO_FriendsList.seePublicationsOfFriend(driver, "user@email.com");
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr");
+		assertTrue(elements.size() == 1);
+	}
+
+	// PR28. Utilizando un acceso vía URL u otra alternativa, tratar de listar las
+	// publicaciones de un
+	// usuario que no sea amigo del usuario identificado en sesión. Comprobar que el
+	// sistema da un error de
+	// autorización.
+
+	@Test
+	public void PR28() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		driver.navigate().to(URL + "/users/publication/list/2");
+		PO_NavView.checkElement(driver, "text", "Method Not Allowed");
+	}
+
+	// ###################################################//
+	// 16. Crear una publicación con una foto adjunta //
+	// ###################################################//
+
+	// PR29. Desde el formulario de crear publicaciones, crear una publicación con
+	// datos válidos y una
+	// foto adjunta. Comprobar que en el listado de publicaciones aparecer la foto
+	// adjunta junto al resto de
+	// datos de la publicación
+
+	@Test
+	public void PR29() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub1", "Publicación número 1", "/resources/img/publication.png");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "listPublication");
+		PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr/td[4]/img");
+	}
+
+	// PR30. Crear una publicación con datos válidos y sin una foto adjunta.
+	// Comprobar que la
+	// publicación se a creado con éxito, ya que la foto no es obligaría.
+
+	@Test
+	public void PR30() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub1", "Publicación número 1");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "listPublication");
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr");
+		assertTrue(elements.size() == 1);
+	}
+
+	// ###################################################//
+	// 17. Listado de todos los usuarios //
+	// ###################################################//
+
+	// PR31. Mostrar el listado de usuarios y comprobar que se muestran todos los
+	// que existen en el
+	// sistema.
+
+	@Test
+	public void PR31() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "listAllUsers");
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
+		assertTrue(elements.size() == 3);
+	}
+
+	// ###################################################//
+	// 18. Borrado múltiple de usuarios //
+	// ###################################################//
+
+	// PR32. Ir a la lista de usuarios, borrar el primer usuario de la lista,
+	// comprobar que la lista se actualiza
+	// y dicho usuario desaparece
+
+	@Test
+	public void PR32() {
+		addUsers();
+
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "listAllUsers");
+		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[2]/td[4]/input");
+		driver.findElement(cb).click();
+		By boton = By.className("btn");
+		driver.findElement(boton).click();
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
+		assertTrue(elements.size() == 4);
+	}
+
+	// PR33. Ir a la lista de usuarios, borrar el último usuario de la lista,
+	// comprobar que la lista se actualiza
+	// y dicho usuario desaparece.
+	
+	@Test
+	public void PR33() {
+		addUsers();
+
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "listAllUsers");
+		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[4]/td[4]/input");
+		driver.findElement(cb).click();
+		By boton = By.className("btn");
+		driver.findElement(boton).click();
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
+		assertTrue(elements.size() == 4);
+	}
+	
+	// PR34. Ir a la lista de usuarios, borrar 3 usuarios, comprobar que la lista se actualiza y dichos
+	// usuarios desaparecen.
+	
+	@Test
+	public void PR34() {
+		addUsers();
+
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "listAllUsers");
+		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[2]/td[4]/input");
+		driver.findElement(cb).click();
+		By cb2 = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[3]/td[4]/input");
+		driver.findElement(cb2).click();
+		By cb3 = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[4]/td[4]/input");
+		driver.findElement(cb3).click();
+		By boton = By.className("btn");
+		driver.findElement(boton).click();
+		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
+		assertTrue(elements.size() == 2);
+	}
+
+
+	///////// Comprobar test complementario, publicación con imagen invalida
 }

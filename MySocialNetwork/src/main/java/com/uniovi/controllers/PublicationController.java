@@ -8,25 +8,30 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.*;
-import com.uniovi.entities.*;
+
+import com.uniovi.entities.Publication;
+import com.uniovi.entities.User;
 import com.uniovi.services.PublicationService;
 import com.uniovi.services.UsersService;
-import com.uniovi.entities.Publication;
-import com.uniovi.services.PublicationService;
+import com.uniovi.validators.PublicationValidator;
 
 @Controller
 public class PublicationController {
 
 	@Autowired
 	private PublicationService publicationService;
+	
+	@Autowired
+	private PublicationValidator publicationValidator;
   
-  @Autowired
+	@Autowired
 	private UsersService usersService;
 	
 	@RequestMapping("/publication/list")
@@ -55,7 +60,12 @@ public class PublicationController {
 	}
 
 	@RequestMapping(value = "/publication/add", method = RequestMethod.POST)
-	public String addPublication(@ModelAttribute Publication publication, @RequestParam("image") MultipartFile image) {
+	public String addPublication(@Validated Publication publication, @Validated @RequestParam("image") MultipartFile image, BindingResult result) {
+		publication.setImage(image);
+		publicationValidator.validate(publication, result);
+		if(result.hasErrors()) {
+			return "/publication/add";
+		}
 		if (image.isEmpty())
 			publicationService.addPublication(publication);
 		else

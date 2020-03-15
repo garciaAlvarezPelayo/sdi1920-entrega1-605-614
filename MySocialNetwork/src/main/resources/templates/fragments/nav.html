@@ -18,9 +18,9 @@
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/publication/add"
+						<li><a id="addPublication" href="/publication/add"
 							th:text="#{createPublication.message}">Agregar Nota</a></li>
-						<li><a href="/publication/list"
+						<li><a id="listPublication" href="/publication/list"
 							th:text="#{myPublications.message}">Ver Notas</a></li>
 					</ul></li>
 				<li id="FriendsMenu" class="dropdown"><a
@@ -34,8 +34,9 @@
 						<li><a id="friendList" href="/users/friend/list"
 							th:text="#{friendslist.message}">Lista de Amigos</a></li>
 					</ul></li>
-        <li sec:authorize="hasRole('ROLE_ADMIN')"><a
-              href="/users/admin/list" th:text="#{allusers.message}">Todos los usuarios</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a id="listAllUsers"
+					href="/users/admin/list" th:text="#{allusers.message}">Todos
+						los usuarios</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"
