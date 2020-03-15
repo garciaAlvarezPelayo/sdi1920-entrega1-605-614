@@ -34,8 +34,6 @@ public class UsersController {
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
 	@Autowired
-	private SignUpFormValidator signInFormValidator;
-	@Autowired
 	private RolesService rolesService;
 	@Autowired
 	private FriendPetitionsService friendPetitionsService;
