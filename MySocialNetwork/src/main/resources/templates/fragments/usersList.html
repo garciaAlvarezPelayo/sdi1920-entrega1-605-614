@@ -26,7 +26,7 @@
 					<td th:text="${user.email}">Ejercicio 1</td>
 					<td th:text="${user.name}">10</td>
 					<td
-						th:if="${!friendPetitions.contains(user.email) && !friendList.contains(user)}"><form
+						th:if="${!friendPetitions.contains(user.email)}"><form
 							method="post"
 							th:attr="action=${'/users/list/petition/' + user.id}">
 							<button type="submit" class="btn btn-default"
