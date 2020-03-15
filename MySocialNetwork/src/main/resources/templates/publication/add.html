@@ -6,8 +6,8 @@
 
 	<div class="container">
 		<h2 th:text="#{createPublication.message}">Agregar publication</h2>
-		<form class="form-horizontal" method="post" action="/publication/add"
-			th:object="${publication}">
+		<form id="form" class="form-horizontal" method="post" action="/publication/add"
+			th:object="${publication}" enctype="multipart/form-data">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="user"
 					th:text="#{title.message}">Title</label>
@@ -24,11 +24,19 @@
 						placeholder="Ejemplo Ejercicio 1" required="true" />
 				</div>
 			</div>
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary" th:text="#{createPublication.message}">Enviar</button>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="image"
+					th:text="#{image.message}">Image</label>
+				<div class="col-sm-10">
+					<input id="fileInput" type="file" class="form-control" name="image"
+						accept=".jpg,.jpeg,.png" />
+				</div>
 			</div>
-	</div>
-	</form>
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary"
+					th:text="#{createPublication.message}">Enviar</button>
+			</div>
+		</form>
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

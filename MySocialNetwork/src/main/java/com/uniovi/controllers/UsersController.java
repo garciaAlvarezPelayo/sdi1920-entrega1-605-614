@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,17 +49,18 @@ public class UsersController {
 		if (searchText != null && !searchText.isEmpty()) {
 			users = usersService.searchUserByEmailNameAndSurnameFor(pageable, searchText);
 		} else {
-			users = usersService.getUsersFor(pageable);
+			users = usersService.getUsersFor(pageable);		
 		}
 		
 		User activeUser = usersService.getCurrentUser();
-		List<String> friendPetitions = 	friendPetitionsService.getEmailsById(activeUser.getId()); 
+		List<String> friendPetitions = 	friendPetitionsService.getEmailsById(activeUser.getId());
+		List<User> friends = friendsService.getFriends(activeUser.getId(), pageable).getContent();
 		
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 		model.addAttribute("activeUser", activeUser);
 		model.addAttribute("friendPetitions", friendPetitions);
-		model.addAttribute("friendList", friendsService.getFriends(activeUser.getId()));
+		model.addAttribute("friends", friends);
 		return "users/list";
 	}
 
@@ -122,6 +124,25 @@ public class UsersController {
 		model.addAttribute("friendList", friendList.getContent());
 		model.addAttribute("page", friendList);
 		return "users/friend/list";
+	}
+	
+	@RequestMapping(value="/users/admin/list")
+	public String getAllUsers(Model model) {
+		List<User> users = usersService.getUsers();
+		model.addAttribute("users", users);
+		model.addAttribute("activeUser", usersService.getCurrentUser());
+		return "users/admin/list";
+	}
+	
+	@RequestMapping(value="/users/admin/list", method=RequestMethod.POST)
+	public String deleteUser(@ModelAttribute User user, @RequestParam("checkboxes") List<String> checkboxes) {
+		if(checkboxes != null) {
+			checkboxes.forEach( cb -> {
+				Long id = Long.parseLong(cb);
+				usersService.deleteUser(id);
+			});
+		}
+		return "redirect:/users/admin/list";
 	}
 }
 

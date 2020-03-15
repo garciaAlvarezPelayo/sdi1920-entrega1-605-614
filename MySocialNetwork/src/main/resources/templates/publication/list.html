@@ -3,15 +3,16 @@
 <head th:replace="fragments/head" />
 <body>
 	<nav th:replace="fragments/nav"></nav>
-	<h2 th:text="#{myPublications.message}"></h2>
 	<div class="container">
+		<h2 th:text="#{myPublications.message}"></h2>
 		<div class="table-responsive">
 			<table class="table table-hover" id="tablePublications">
 				<thead>
 					<tr>
 						<th th:text="#{publicationDate.message}"></th>
 						<th th:text="#{title.message}">PuntuaciÃ³n</th>
-						<th th:text="#{text.message}">PuntuaciÃ³n</th>
+            <th th:text="#{text.message}">PuntuaciÃ³n</th>
+						<th th:text="#{image.message}">Image</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -21,7 +22,10 @@
 					<tr th:each="publication : ${publicationList}">
 						<td th:text="${publication.publicationDate}">Ejercicio 1</td>
 						<td th:text="${publication.title}">10</td>
-						<td th:text="${publication.text}">10</td>
+            <td th:text="${publication.text}">10</td>
+						<td th:if="${publication.imagePath != null}"><img
+							th:src="${'/img/' + publication.imagePath}" height="100"
+							width="100" /></td>
 					</tr>
 				</tbody>
 			</table>

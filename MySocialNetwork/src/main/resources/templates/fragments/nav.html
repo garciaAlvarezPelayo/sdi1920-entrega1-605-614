@@ -34,6 +34,8 @@
 						<li><a id="friendList" href="/users/friend/list"
 							th:text="#{friendslist.message}">Lista de Amigos</a></li>
 					</ul></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a
+              href="/users/admin/list" th:text="#{allusers.message}">Todos los usuarios</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="#"
