@@ -1,11 +1,7 @@
 package com.uniovi.tests.pageobjects;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class PO_Properties {
@@ -17,7 +13,7 @@ public class PO_Properties {
 		return ENGLISH;
 	}
 
-	static private String Path;
+	private String Path;
 	static int SPANISH = 0;
 	static int ENGLISH = 1;	
 	static Locale[] idioms = new Locale[] {new Locale("ES"), new Locale("EN")};

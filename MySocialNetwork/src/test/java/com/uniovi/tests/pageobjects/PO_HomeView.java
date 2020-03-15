@@ -8,7 +8,7 @@ public class PO_HomeView extends PO_NavView {
 
 	static public void checkWelcome(WebDriver driver, int language) {
 		// Esperamos a que se cargue el saludo de bienvenida en Español
-		SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString("welcome.message", language), getTimeout());
+		SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString("home.title", language), getTimeout());
 	}
 
 	static public void checkChangeIdiom(WebDriver driver, String textIdiom1, String textIdiom2, int locale1,

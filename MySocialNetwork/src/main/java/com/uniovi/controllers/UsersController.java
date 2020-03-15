@@ -35,8 +35,6 @@ public class UsersController {
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
 	@Autowired
-	private SignUpFormValidator signInFormValidator;
-	@Autowired
 	private RolesService rolesService;
 	@Autowired
 	private FriendPetitionsService friendPetitionsService;
@@ -91,6 +89,14 @@ public class UsersController {
 	@RequestMapping("/home")
 	public String home(Model model) {
 		return "/home";
+	}
+	
+	@RequestMapping("/closeWeb")
+	public String closeWeb() {
+		if(usersService.getCurrentUser().getRole().equals(rolesService.getRoles()[0]))
+			return "/403";
+		else
+			return "/home";
 	}
 	
 	@RequestMapping(value = "/users/list/petition/{id}", method=RequestMethod.POST)

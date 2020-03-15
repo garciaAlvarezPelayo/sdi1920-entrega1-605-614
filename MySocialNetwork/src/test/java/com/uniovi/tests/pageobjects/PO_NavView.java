@@ -58,4 +58,10 @@ public class PO_NavView extends PO_View {
 	public static void clickOptionById(WebDriver driver, String id) {
 		driver.findElement(By.id(id)).click();
 	}
+
+	public static void clickLoginOption(WebDriver driver) {
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	}
+	
+	
 }
