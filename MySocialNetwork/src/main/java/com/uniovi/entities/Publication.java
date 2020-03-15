@@ -1,8 +1,12 @@
 package com.uniovi.entities;
 
-import javax.persistence.*;
-
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Publication {
@@ -11,6 +15,9 @@ public class Publication {
 	private long id;
 	private String title;
 	private String text;
+//	@Transient
+//	private MultipartFile image;
+	private String imagePath;
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	private User author;
@@ -64,5 +71,22 @@ public class Publication {
 	public void setPublicationDate(Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
+
+//	public MultipartFile getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(MultipartFile image) {
+//		this.image = image;
+//	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 
 }

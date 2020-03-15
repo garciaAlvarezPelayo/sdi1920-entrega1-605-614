@@ -1,6 +1,8 @@
 package com.uniovi.services;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -31,9 +33,9 @@ public class UsersService {
 	public void init() {
 	}
 
-	public Page<User> getUsers(Pageable pageable) {
-		Page<User> users;
-		users = usersRepository.findAll(pageable);
+	public List<User> getUsers() {
+		List<User> users = new ArrayList<User>();
+		usersRepository.findAll().forEach(users::add);
 		return users;
 	}
 

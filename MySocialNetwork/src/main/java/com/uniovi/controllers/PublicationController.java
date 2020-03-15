@@ -8,16 +8,21 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import com.uniovi.entities.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.uniovi.entities.Publication;
 import com.uniovi.services.PublicationService;
 
 @Controller
 public class PublicationController {
-	
+
 	@Autowired
 	private PublicationService publicationService;
-	
+
 	@RequestMapping("/publication/list")
 	public String getListado(Model model, Pageable pageable) {
 		Page<Publication> publications = new PageImpl<Publication>(new LinkedList<Publication>());
@@ -32,12 +37,13 @@ public class PublicationController {
 		model.addAttribute("publication", new Publication());
 		return "publication/add";
 	}
-	
+
 	@RequestMapping(value = "/publication/add", method = RequestMethod.POST)
-	public String setMark(@ModelAttribute Publication publication) {
-		publicationService.addPublication(publication);
-		return "redirect:/publication/list";
+	public String addPublication(@ModelAttribute Publication publication, @RequestParam("image") MultipartFile image) {
+		if (image.isEmpty())
+			publicationService.addPublication(publication);
+		else
+			publicationService.addPublication(publication, image);
+		return "home";
 	}
 }
-
-
