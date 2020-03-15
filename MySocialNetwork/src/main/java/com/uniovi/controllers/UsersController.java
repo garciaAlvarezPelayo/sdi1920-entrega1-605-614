@@ -91,6 +91,14 @@ public class UsersController {
 		return "/home";
 	}
 	
+	@RequestMapping("/closeWeb")
+	public String closeWeb() {
+		if(usersService.getCurrentUser().getRole().equals(rolesService.getRoles()[0]))
+			return "/403";
+		else
+			return "/home";
+	}
+	
 	@RequestMapping(value = "/users/list/petition/{id}", method=RequestMethod.POST)
 	public String sendPetition(@PathVariable Long id) {
 		User activeUser = usersService.getCurrentUser();
