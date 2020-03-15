@@ -2,6 +2,7 @@ package com.uniovi.tests;
 
 import static org.junit.Assert.assertTrue;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.junit.After;
@@ -73,7 +74,12 @@ public class MySocialNetworkTests {
 	private void addUsers() {
 		PO_RegisterUser.registerUser(driver, "user2@email.com", "Diego", "Ramírez", "user2");
 		PO_RegisterUser.registerUser(driver, "user3@email.com", "Daniela", "Gutierrez", "user3");
-		PO_NavView.clickOption(driver, "logout", "id", "texto-entrar");
+	}
+	
+	private void addUsers2() {
+		PO_RegisterUser.registerUser(driver, "user4@email.com", "Emilio", "Fernández", "user4");
+		PO_RegisterUser.registerUser(driver, "user5@email.com", "Clara", "González", "user5");
+		PO_RegisterUser.registerUser(driver, "user6@email.com", "Jose", "González", "user6");
 	}
 
 	// ###################################################//
@@ -326,7 +332,7 @@ public class MySocialNetworkTests {
 		PO_NavView.clickOptionById(driver, "friendList");
 		PO_FriendsList.testFriend(driver, "admin@email.com");
 	}
-	
+
 	// 10. Internacionalización de todas las vistas //
 	// ###################################################//
 
@@ -365,6 +371,10 @@ public class MySocialNetworkTests {
 		driver.navigate().to(URL + "/users/list");
 		PO_LoginView.checkPasswordMessage(driver, PO_Properties.getSPANISH());
 	}
+
+	// ###################################################//
+	// 12. Seguridad //
+	// ###################################################//
 
 	// PR22. Intentar acceder sin estar autenticado a la opción de listado de
 	// publicaciones de un usuario
@@ -459,7 +469,7 @@ public class MySocialNetworkTests {
 		PO_NavView.clickOptionById(driver, "addPublication");
 		PO_Publication.fillForm(driver, "Pub3", "Publicación número 3");
 		PO_NavView.clickOption(driver, "logout", "id", "texto-entrar");
-		
+
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "FriendsMenu");
 		PO_NavView.clickOptionById(driver, "friendList");
@@ -478,7 +488,12 @@ public class MySocialNetworkTests {
 	public void PR28() {
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		driver.navigate().to(URL + "/users/publication/list/2");
-		PO_NavView.checkElement(driver, "text", "Method Not Allowed");
+		By navbar = By.id("navbar");
+		try {
+			driver.findElement(navbar);
+		} catch (NoSuchElementException e) {
+			// Significa que no existe la opción de desconectarse
+		}
 	}
 
 	// ###################################################//
@@ -496,7 +511,7 @@ public class MySocialNetworkTests {
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "publicationsMenu");
 		PO_NavView.clickOptionById(driver, "addPublication");
-		PO_Publication.fillForm(driver, "Pub1", "Publicación número 1", "/resources/img/publication.png");
+		PO_Publication.fillForm(driver, "Pub4", "Publicación número 4", Paths.get("src/test/java/resources/img/publication.png").toAbsolutePath().toString());
 		PO_NavView.clickOptionById(driver, "publicationsMenu");
 		PO_NavView.clickOptionById(driver, "listPublication");
 		PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr/td[4]/img");
@@ -511,11 +526,10 @@ public class MySocialNetworkTests {
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "publicationsMenu");
 		PO_NavView.clickOptionById(driver, "addPublication");
-		PO_Publication.fillForm(driver, "Pub1", "Publicación número 1");
+		PO_Publication.fillForm(driver, "Pub5", "Publicación número 5");
 		PO_NavView.clickOptionById(driver, "publicationsMenu");
 		PO_NavView.clickOptionById(driver, "listPublication");
-		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tablePublications\"]/tbody/tr");
-		assertTrue(elements.size() == 1);
+		PO_View.checkElement(driver, "text", "Pub5");
 	}
 
 	// ###################################################//
@@ -548,7 +562,7 @@ public class MySocialNetworkTests {
 
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "listAllUsers");
-		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[2]/td[4]/input");
+		By cb = By.xpath("//*[@id=\"tableAllUsers\"]/tbody/tr[2]/td[4]/input");
 		driver.findElement(cb).click();
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
@@ -559,43 +573,48 @@ public class MySocialNetworkTests {
 	// PR33. Ir a la lista de usuarios, borrar el último usuario de la lista,
 	// comprobar que la lista se actualiza
 	// y dicho usuario desaparece.
-	
+
 	@Test
 	public void PR33() {
-		addUsers();
-
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "listAllUsers");
-		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[4]/td[4]/input");
+		By cb = By.xpath("//*[@id=\"tableAllUsers\"]/tbody/tr[4]/td[4]/input");
 		driver.findElement(cb).click();
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
 		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
-		assertTrue(elements.size() == 4);
+		assertTrue(elements.size() == 3);
 	}
-	
-	// PR34. Ir a la lista de usuarios, borrar 3 usuarios, comprobar que la lista se actualiza y dichos
+
+	// PR34. Ir a la lista de usuarios, borrar 3 usuarios, comprobar que la lista se
+	// actualiza y dichos
 	// usuarios desaparecen.
-	
+
 	@Test
 	public void PR34() {
-		addUsers();
-
+		addUsers2();
+		
 		PO_LoginView.login(driver, "admin@email.com", "admin");
 		PO_NavView.clickOptionById(driver, "listAllUsers");
-		By cb = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[2]/td[4]/input");
+		By cb = By.xpath("//*[@id=\"tableAllUsers\"]/tbody/tr[2]/td[4]/input");
 		driver.findElement(cb).click();
-		By cb2 = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[3]/td[4]/input");
+		By cb2 = By.xpath("//*[@id=\"tableAllUsers\"]/tbody/tr[3]/td[4]/input");
 		driver.findElement(cb2).click();
-		By cb3 = By.xpath("//*[@id=\"tableFriends\"]/tbody/tr[4]/td[4]/input");
+		By cb3 = By.xpath("//*[@id=\"tableAllUsers\"]/tbody/tr[4]/td[4]/input");
 		driver.findElement(cb3).click();
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
 		List<WebElement> elements = PO_View.checkElement(driver, "free", "//*[@id=\"tableAllUsers\"]/tbody/tr");
-		assertTrue(elements.size() == 2);
+		assertTrue(elements.size() == 3);
 	}
 
-
-	///////// Comprobar test complementario, publicación con imagen invalida
+	@Test
+	public void PR36() {
+		PO_LoginView.login(driver, "admin@email.com", "admin");
+		PO_NavView.clickOptionById(driver, "publicationsMenu");
+		PO_NavView.clickOptionById(driver, "addPublication");
+		PO_Publication.fillForm(driver, "Pub6", "Publicación número 6", Paths.get("src/test/java/resources/fail.txt").toAbsolutePath().toString());
+		PO_View.checkElement(driver, "text", "El formato de la imagen no es válido");
+	}
 
 }

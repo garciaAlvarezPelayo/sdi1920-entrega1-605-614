@@ -37,7 +37,7 @@ public class PO_RegisterUser extends PO_NavView{
 	}
 
 	public static void registerUser(WebDriver driver, String email, String name, String surname, String password) {
-		PO_LoginView.login(driver, "admin@email.com", "admin");
 		register(driver, email, name, surname, password);
+		PO_NavView.clickOption(driver, "logout", "id", "texto-entrar");
 	}
 }

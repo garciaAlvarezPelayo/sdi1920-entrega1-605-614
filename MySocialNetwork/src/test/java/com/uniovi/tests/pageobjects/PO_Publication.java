@@ -14,8 +14,6 @@ public class PO_Publication extends PO_NavView {
 	static public void fillForm(WebDriver driver, String titlep, String textp, String rutaImagenp) {
 		fillStandardForm(driver, titlep, textp);
 		WebElement image = driver.findElement(By.name("image"));
-		image.click();
-		image.clear();
 		image.sendKeys(rutaImagenp);
 		By boton = By.className("btn");
 		driver.findElement(boton).click();

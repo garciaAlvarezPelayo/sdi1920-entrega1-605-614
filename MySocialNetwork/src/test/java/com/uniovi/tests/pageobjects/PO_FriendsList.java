@@ -2,6 +2,7 @@ package com.uniovi.tests.pageobjects;
 
 import static org.junit.Assert.assertTrue;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.uniovi.utils.SeleniumUtils;
@@ -13,9 +14,8 @@ public class PO_FriendsList extends PO_NavView{
 		assertTrue(true);
 	}
 	
-
 	public static void seePublicationsOfFriend(WebDriver driver, String email) {
-	
+		driver.findElement(By.id(email)).click();
 	}
 		
 	static public void checkFriendListMessage(WebDriver driver, int language) {
