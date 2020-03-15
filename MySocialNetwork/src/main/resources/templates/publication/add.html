@@ -5,9 +5,10 @@
 	<nav th:replace="fragments/nav" />
 
 	<div class="container">
-		<h2 th:text="#{createPublication.message}">Agregar publication</h2>
-		<form id="form" class="form-horizontal" method="post" action="/publication/add"
-			th:object="${publication}" enctype="multipart/form-data">
+		<h2 id="publicationHeader" th:text="#{createPublication.message}">Agregar publication</h2>
+		<form id="form" class="form-horizontal" method="post"
+			action="/publication/add" th:object="${publication}"
+			enctype="multipart/form-data">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="user"
 					th:text="#{title.message}">Title</label>
@@ -29,7 +30,8 @@
 					th:text="#{image.message}">Image</label>
 				<div class="col-sm-10">
 					<input id="fileInput" type="file" class="form-control" name="image"
-						accept=".jpg,.jpeg,.png" />
+						accept=".jpg,.jpeg,.png" /> <span class="text-danger"
+						th:if="${#fields.hasErrors('image')}" th:errors="*{image}">
 				</div>
 			</div>
 			<div class="col-sm-offset-2 col-sm-10">
