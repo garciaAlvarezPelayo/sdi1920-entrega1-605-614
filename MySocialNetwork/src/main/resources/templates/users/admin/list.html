@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/head" />
+<body>
+	<nav th:replace="fragments/nav"></nav>
+	<div class="container">
+		<h2 th:text="#{usersList.message}">Usuarios</h2>
+		<div class="table-responsive">
+			<form method="post" action="/users/admin/list">
+				<table class="table table-hover" id="tableFriends">
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th th:text="#{name.message}">Nombre</th>
+							<th th:text="#{surname.message}">Apellidos</th>
+							<th th:text="#{select.message}">Eliminar</th>
+							<th class="col-md-1"></th>
+							<th class="col-md-1"></th>
+							<th class="col-md-1"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${users}">
+							<td th:text="${user.email}">Ejercicio 1</td>
+							<td th:text="${user.name}">Ejercicio 1</td>
+							<td th:text="${user.surname}">Ejercicio 1</td>
+							<td th:if="${activeUser.id != user.id}"><input name="checkboxes" type="checkbox"
+								th:value="${user.id}" /></td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" class="btn btn-default"
+					th:text="#{delete.message}"></button>
+			</form>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

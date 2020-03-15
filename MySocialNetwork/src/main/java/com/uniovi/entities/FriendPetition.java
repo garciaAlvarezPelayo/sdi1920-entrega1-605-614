@@ -49,7 +49,5 @@ public class FriendPetition {
 	public void setHasAccepted(boolean hasAccepted) {
 		this.hasAccepted = hasAccepted;
 	}
-	
-	
-	
+		
 }
